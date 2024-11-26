@@ -1,1 +1,2 @@
 # devstup_2_orgirepo_cp
+INTOR
