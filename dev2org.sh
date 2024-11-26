@@ -11,7 +11,7 @@ REVERSE=$2 #if you want copy files from original repo to dev setup, pass 2nd par
 CURRENT_DIR=$(pwd)
 SRC_DIR="$CURRENT_DIR/" #TODO:dev setup directory
 DST_DIR="$HOME/" #TODO:original repo directory use $HOME instead of ~ to avoid error
-CP_ARRAY=("javascript/" "style/" "outterfile.js") || ("") #TODO:only folders or files need to be copied or if need to copy entire folder use ("")
+CP_ARRAY=("javascript/" "style/" "outterfile.js") #TODO:only folders or files need to be copied or if need to copy entire folder use ("")
 #FYI the whole code only copies files having same name in both src and dst
 
 if [[ "$REVERSE" == "true" || "$REVERSE" == "TRUE" || "$REVERSE" == "TRUE" ]]; then
