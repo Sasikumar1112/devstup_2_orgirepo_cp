@@ -9,8 +9,10 @@ GITBRANCH=$1
 REVERSE=$2 #if you want copy files from original repo to dev setup, pass 2nd param as 'true'
 
 CURRENT_DIR=$(pwd)
-SRC_DIR="$CURRENT_DIR/" #dev setup directory
-DST_DIR="$HOME/" #original repo directory use $HOME instead of ~ to avoid error
+SRC_DIR="$CURRENT_DIR/" #TODO:dev setup directory
+DST_DIR="$HOME/" #TODO:original repo directory use $HOME instead of ~ to avoid error
+CP_ARRAY=("javascript/" "style/" "outterfile.js") || ("") #TODO:only folders or files need to be copied or if need to copy entire folder use ("")
+#FYI the whole code only copies files having same name in both src and dst
 
 if [[ "$REVERSE" == "true" || "$REVERSE" == "TRUE" || "$REVERSE" == "TRUE" ]]; then
         TEMP=$SRC_DIR
@@ -41,7 +43,10 @@ TARGETBRANCHNAME=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$GITBRANCH" == "$TARGETBRANCHNAME" ]; then
         echo "Copying to branch $DST_DIR having HEAD at '$TARGETBRANCHNAME'"
-        rsync -rt --exclude=".git" --existing "$SRC_DIR" "$DST_DIR"
+        for i in "${CP_ARRAY[@]}"; do
+		    echo "Copying $i..."
+        	rsync -rt --exclude=".git" --existing "$SRC_DIR/$i" "$DST_DIR/$i"
+       	done
 
         # -r: Recursive, copies directories
         #COPY ONLY THE FILES WHICH HAVE SAME FILE NAME IN BOTH SRC AND DST
